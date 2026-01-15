@@ -7,10 +7,13 @@
                   id="Definitions_StudentBilling"
                   targetNamespace="http://example.edu/bursar">
 
-  <bpmn:process id="Bursar_Student_Billing_Process" name="Student Billing and Payment Processing" isExecutable="false">
+  <bpmn:process id="Bursar_Student_Billing_Process"
+                name="Student Billing and Payment Processing"
+                isExecutable="false">
 
-    <!-- Lanes -->
+    <!-- Lane Set -->
     <bpmn:laneSet id="LaneSet_1">
+
       <bpmn:lane id="Lane_Student" name="Student">
         <bpmn:flowNodeRef>StartEvent_StudentReceivesBill</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_ReviewBill</bpmn:flowNodeRef>
@@ -31,31 +34,70 @@
       <bpmn:lane id="Lane_Finance" name="Finance">
         <bpmn:flowNodeRef>Task_ReconcilePayment</bpmn:flowNodeRef>
       </bpmn:lane>
+
     </bpmn:laneSet>
 
     <!-- Events -->
-    <bpmn:startEvent id="StartEvent_StudentReceivesBill" name="Billing Cycle Begins"/>
+    <bpmn:startEvent id="StartEvent_StudentReceivesBill"
+                     name="Billing Cycle Begins"/>
 
-    <bpmn:endEvent id="EndEvent_ProcessComplete" name="Account Updated"/>
+    <bpmn:endEvent id="EndEvent_ProcessComplete"
+                   name="Account Updated"/>
 
     <!-- Tasks -->
-    <bpmn:task id="Task_GenerateBill" name="Generate Student Bill"/>
-    <bpmn:task id="Task_PostCharges" name="Post Tuition & Fees"/>
-    <bpmn:task id="Task_ReviewBill" name="Review Bill"/>
-    <bpmn:task id="Task_SubmitPayment" name="Submit Payment"/>
-    <bpmn:task id="Task_PostPayment" name="Post Payment"/>
-    <bpmn:task id="Task_ReconcilePayment" name="Reconcile Payment"/>
-    <bpmn:task id="Task_ReviewException" name="Review Payment Exceptions"/>
+    <bpmn:task id="Task_GenerateBill"
+               name="Generate Student Bill"/>
+
+    <bpmn:task id="Task_PostCharges"
+               name="Post Tuition &amp; Fees"/>
+
+    <bpmn:task id="Task_ReviewBill"
+               name="Review Bill"/>
+
+    <bpmn:task id="Task_SubmitPayment"
+               name="Submit Payment"/>
+
+    <bpmn:task id="Task_PostPayment"
+               name="Post Payment"/>
+
+    <bpmn:task id="Task_ReconcilePayment"
+               name="Reconcile Payment"/>
+
+    <bpmn:task id="Task_ReviewException"
+               name="Review Payment Exceptions"/>
 
     <!-- Sequence Flows -->
-    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_StudentReceivesBill" targetRef="Task_GenerateBill"/>
-    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_GenerateBill" targetRef="Task_PostCharges"/>
-    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_PostCharges" targetRef="Task_ReviewBill"/>
-    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_ReviewBill" targetRef="Task_SubmitPayment"/>
-    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_SubmitPayment" targetRef="Task_PostPayment"/>
-    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_PostPayment" targetRef="Task_ReconcilePayment"/>
-    <bpmn:sequenceFlow id="Flow_7" sourceRef="Task_ReconcilePayment" targetRef="Task_ReviewException"/>
-    <bpmn:sequenceFlow id="Flow_8" sourceRef="Task_ReviewException" targetRef="EndEvent_ProcessComplete"/>
+    <bpmn:sequenceFlow id="Flow_1"
+                       sourceRef="StartEvent_StudentReceivesBill"
+                       targetRef="Task_GenerateBill"/>
+
+    <bpmn:sequenceFlow id="Flow_2"
+                       sourceRef="Task_GenerateBill"
+                       targetRef="Task_PostCharges"/>
+
+    <bpmn:sequenceFlow id="Flow_3"
+                       sourceRef="Task_PostCharges"
+                       targetRef="Task_ReviewBill"/>
+
+    <bpmn:sequenceFlow id="Flow_4"
+                       sourceRef="Task_ReviewBill"
+                       targetRef="Task_SubmitPayment"/>
+
+    <bpmn:sequenceFlow id="Flow_5"
+                       sourceRef="Task_SubmitPayment"
+                       targetRef="Task_PostPayment"/>
+
+    <bpmn:sequenceFlow id="Flow_6"
+                       sourceRef="Task_PostPayment"
+                       targetRef="Task_ReconcilePayment"/>
+
+    <bpmn:sequenceFlow id="Flow_7"
+                       sourceRef="Task_ReconcilePayment"
+                       targetRef="Task_ReviewException"/>
+
+    <bpmn:sequenceFlow id="Flow_8"
+                       sourceRef="Task_ReviewException"
+                       targetRef="EndEvent_ProcessComplete"/>
 
   </bpmn:process>
 
